@@ -6,10 +6,10 @@
 
 const accounts = [
   {
-    owner: "Md Towhidul Islam",
-    movements: [2500, 500, -750, 1200, 3200, -1500, 500, 1200, -1750, 1800,500,4000],
+    owner: "Towhidul Islam",
+    movements: [2500, 500, -750, 1200, 3200, -1500, 500, 1200, -1750, 1800, 500, 4000],
     interestRate: 1.5, // %
-    password: 1234,
+    password: 261,
     movementsDates: [
       "2021-11-18T21:31:17.178Z",
       "2021-12-23T07:42:02.383Z",
@@ -29,13 +29,11 @@ const accounts = [
   },
   {
     owner: "Md Forhad",
-    movements: [2500, 500, 1200, 3200, -1500, 500, 1200, -1750, 1800,500,4000],
+    movements: [1200, 3200, -1500, 500, 1200, -1750, 1800, 500, 4000],
     interestRate: 1.5, // %
-    password: 1234,
+    password: 230,
     movementsDates: [
       "2021-12-23T07:42:02.383Z",
-      "2022-01-28T09:15:04.904Z",
-      "2022-04-01T10:17:24.185Z",
       "2022-07-08T14:11:59.604Z",
       "2022-09-18T17:01:17.194Z",
       "2022-09-21T23:36:17.929Z",
@@ -50,9 +48,9 @@ const accounts = [
   },
   {
     owner: "Md Noyon",
-    movements: [2500, 500, -750, 500, 1200, -1750, 1800,500,4000],
+    movements: [2500, 500, -750, 500, 1200, -1750, 1800, 500, 4000],
     interestRate: 1.5, // %
-    password: 1234,
+    password: 726,
     movementsDates: [
       "2021-11-18T21:31:17.178Z",
       "2022-07-08T14:11:59.604Z",
@@ -68,10 +66,10 @@ const accounts = [
     locale: "en-US",
   },
   {
-    owner: "Md Forhad",
-    movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -300, 1500, -1850,1000],
+    owner: "Abdul Kaiyum",
+    movements: [5000, 3400, -150, -790, -3210, -1000, 8500],
     interestRate: 1.3, // %
-    password: 5678,
+    password: 291,
     movementsDates: [
       "2021-12-11T21:31:17.671Z",
       "2021-12-27T07:42:02.184Z",
@@ -80,19 +78,13 @@ const accounts = [
       "2022-03-12T14:11:59.203Z",
       "2022-05-19T17:01:17.392Z",
       "2022-08-22T23:36:17.522Z",
-      "2022-09-25T12:51:31.491Z",
-      "2022-09-28T06:41:26.394Z",
-      "2022-09-29T08:11:36.276Z",
-      "2022-09-30T08:10:36.276Z",
     ],
     currency: "EUR",
     locale: "en-GB",
   },
 ];
 
-/////////////////////////////////////////////////////////////
-// Elements
-/////////////////////////////////////////////////////////////
+////////////////////////// Elements////////////////////////
 
 const labelWelcome = document.querySelector(".welcome");
 const labelDate = document.querySelector(".date");
@@ -119,18 +111,14 @@ const inputLoanAmount = document.querySelector(".form-input-loan-amount");
 const inputCloseUsername = document.querySelector(".form-input-username");
 const inputClosePassword = document.querySelector(".form-input-password");
 
-/////////////////////////////////////////////////////////////////////
-// Update UI
-/////////////////////////////////////////////////////////////////////
+//////////////////////Update UI////////////////////////////////
 
 function updateUI(currentAccount) {
   displayMovements(currentAccount);
   displaySummary(currentAccount);
   displayBalance(currentAccount);
 }
-/////////////////////////////////////////
-// formatting currency
-/////////////////////////////////////////
+/////////////////formatting currency//////////////////////////
 
 function formatCurrency(value, locale, currency) {
   return new Intl.NumberFormat(locale, {
@@ -139,9 +127,7 @@ function formatCurrency(value, locale, currency) {
   }).format(value);
 }
 
-////////////////////////////////////////////////////
-// Days calculation
-////////////////////////////////////////////////////
+//////////////////Days calculation////////////////////////////
 
 function formatMoveDate(date, locale) {
   const calculateDays = (date1, date2) =>
@@ -160,9 +146,7 @@ function formatMoveDate(date, locale) {
   }).format(date);
 }
 
-/////////////////////////////////////////////////////////////////////
-// Username
-/////////////////////////////////////////////////////////////////////
+/////////////////////Username////////////////////////////////
 
 function createUsernames(accounts) {
   accounts.forEach((account) => {
@@ -175,9 +159,7 @@ function createUsernames(accounts) {
 }
 createUsernames(accounts);
 
-/////////////////////////////////////////////////////////////////////
-// Login
-/////////////////////////////////////////////////////////////////////
+////////////////////////////Login////////////////////////////
 
 let currentAccount, timer;
 
@@ -232,9 +214,7 @@ btnLogin.addEventListener("click", function (e) {
   inputLoginPassword.blur();
 });
 
-/////////////////////////////////////////////////////////////////////
-// Movements
-/////////////////////////////////////////////////////////////////////
+/////////////////////////////Movements////////////////////////////
 
 function displayMovements(account, sort = false) {
   containerMovements.innerHTML = "";
@@ -258,9 +238,8 @@ function displayMovements(account, sort = false) {
 
     const html = `
         <div class="movements-row">
-          <div class="movements-type movements-type-${type}">${
-      i + 1
-    } ${type}</div>
+          <div class="movements-type movements-type-${type}">${i + 1
+      } ${type}</div>
           <div class="movements-date">${displayDate}</div>
           <div class="movements-value">${formattedMove}</div>
         </div>
@@ -270,9 +249,7 @@ function displayMovements(account, sort = false) {
   });
 }
 
-/////////////////////////////////////////////////////////////////////
-// Summary
-/////////////////////////////////////////////////////////////////////
+/////////////////////Summary///////////////////////////
 
 function displaySummary(account) {
   // Incomes
@@ -309,9 +286,7 @@ function displaySummary(account) {
   );
 }
 
-/////////////////////////////////////////////////////////////////////
-// Balance
-/////////////////////////////////////////////////////////////////////
+//////////////////////// Balance////////////////////////////////
 
 function displayBalance(account) {
   account.balance = account.movements.reduce((acc, move) => acc + move, 0);
@@ -323,9 +298,7 @@ function displayBalance(account) {
   );
 }
 
-/////////////////////////////////////////////////////////////////////
-// Transfer
-/////////////////////////////////////////////////////////////////////
+//////////////////////Transfer//////////////////////////////////////
 
 btnTransfer.addEventListener("click", function (e) {
   e.preventDefault();
@@ -373,9 +346,7 @@ btnTransfer.addEventListener("click", function (e) {
   }
 });
 
-/////////////////////////////////////////////////////////////////////
-// Loan
-/////////////////////////////////////////////////////////////////////
+///////////////////Loan///////////////////////////////////
 
 btnLoan.addEventListener("click", function (e) {
   e.preventDefault();
@@ -415,9 +386,7 @@ btnLoan.addEventListener("click", function (e) {
   inputLoanAmount.blur();
 });
 
-/////////////////////////////////////////////////////////////////////
-// Close account
-/////////////////////////////////////////////////////////////////////
+//////////////////////////////Close account///////////////////////////////////////
 
 btnClose.addEventListener("click", function (e) {
   e.preventDefault();
@@ -459,9 +428,7 @@ btnClose.addEventListener("click", function (e) {
   inputClosePassword.blur();
 });
 
-///////////////////////////////////////////////////////////////////
-// sort
-////////////////////////////////////////////////////////////////
+////////////////////////// sort /////////////////////////////////
 
 let sortedMove = false;
 
@@ -472,9 +439,7 @@ btnSort.addEventListener("click", function (e) {
   sortedMove = !sortedMove;
 });
 
-/////////////////////////////////////////////////////////////
-// Timer
-/////////////////////////////////////////////////////////////
+/////////////////////////////Timer///////////////////////////
 
 function logOut() {
   labelTimer.textContent = "";
@@ -489,7 +454,7 @@ function logOut() {
 
     if (time === 0) {
       clearInterval(timer);
-      labelWelcome.textContent = "You've been logged out!";
+      labelWelcome.textContent = "login Expired!!";
       containerApp.style.opacity = 0;
     }
     time--;
